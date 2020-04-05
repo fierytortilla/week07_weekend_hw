@@ -16,6 +16,7 @@ export default {
     data(){
         return{
             favoriteFilms:[],
+            personalScores: [],
             selectedFilm: {}
         }
     },
@@ -28,6 +29,14 @@ export default {
         eventBus.$on('film-unfavorited', (film)=>{
             if(this.favoriteFilms.includes(film)){
                 this.favoriteFilms.splice(this.favoriteFilms.indexOf(film), 1)
+            }
+        }),
+        eventBus.$on('add-personal-score', (personalScoreObject)=>{
+            if(!this.personalScores.includes(personalScoreObject)){
+                this.personalScores.push(personalScoreObject)
+            } else if(this.personalScores.includes(personalScoreObject)){
+                let index= this.personalScores.indexOf(personalScoreObject)
+                this.personalScores[index].personalScore= personalScoreObject.personalScore
             }
         })
     },

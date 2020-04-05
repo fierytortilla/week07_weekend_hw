@@ -4,7 +4,9 @@
         <button v-on:click='handleClick'>Favourite this character!</button>
         <button v-on:click='handleClickUnfavorite'>Unfavorite this character!</button>
         <p><span>Age: </span>{{character.age}}</p>
-        <!-- <p><span>Films Appeared In:</span>{{fetch(character.films[0]).then(response=>response.json()).then(filmTitle=> filmTitle)}}</p> -->
+        <p>Hair Color: {{character.hair_color}}</p>
+        <p>Eye Color: {{character.eye_color}}</p>
+        <!-- <p><span>Films Appeared In:</span>{{getFilm}} </p> -->
     </div>
 
 </template>
@@ -16,7 +18,8 @@ export default {
     name: 'character-detail',
     data(){
         return {
-            character: null
+            character: null,
+            film: null
         }
     },
     mounted(){
@@ -28,6 +31,12 @@ export default {
         },
         handleClickUnfavorite(){
             eventBus.$emit('character-unfavorited', this.character)
+        },
+        getFilm(){
+            fetch(this.character.films[0])
+            .then(response=>response.json())
+            .then(film=> this.film)
+            .catch(error=>log.console(error))       
         }
     } 
 

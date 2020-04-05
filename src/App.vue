@@ -1,10 +1,6 @@
 <template>
 <div>
   <h1>Ghibli Otaku Fandom Extravaganza</h1>
-  <nav>
-      <li><router-link to="/about_us">About us </router-link></li>
-      <router-view></router-view>
-  </nav>
   <p>List of Ghibli Movies: <films-list :films="films"/></p>
   <p>Favorited Ghibli Movies: <favorite-films-list /></p>
 
@@ -24,10 +20,7 @@ import CharacterDetail from './components/CharacterDetail.vue'
 import CharactersList from './components/CharactersList.vue'
 import FavoriteFilmsList from './components/FavoriteFilmsList.vue'
 import FavoriteCharactersList from './components/FavoriteCharactersList.vue'
-// import AboutUs from './components/AboutUs.vue'
 import { eventBus } from './main.js'
-
-
 
 export default {
   data(){
@@ -44,9 +37,8 @@ export default {
     "film-detail": FilmDetail,
     "character-detail": CharacterDetail,
     "favorite-films-list": FavoriteFilmsList,
-    "favorite-character-list": FavoriteCharactersList,
-    // "about-us": AboutUs
-  },
+    "favorite-character-list": FavoriteCharactersList
+    },
   props: ['favoriteFilms', 'favoriteCharacters'],
   mounted(){
     fetch('https://ghibliapi.herokuapp.com/films')
@@ -59,20 +51,23 @@ export default {
     .then(characters=> this.characters = characters)
     .catch(error=> console.log(error))
 
-    this.characters.map(function(){
-      return fetch(character.films[0]).then(response=>response.json()).then(filmTitle=> filmTitle)
-    })
-
   }
-  // methods: {
-  //   goBack(){
-  //     this.$router.push("/about_us");
-  //   }
-  // }
 
 }
 </script>
 
 <style scoped>
+  header{
+    background-color: deeppink;
+  }
+
+  body {
+    background-color: deepskyblue
+  }
+
+  footer {
+    background-color: deeppink;
+  }
+
 
 </style>
