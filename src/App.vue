@@ -17,6 +17,7 @@
 <div class="vl"></div> 
   <character-detail />
   </div>
+    <img src="./assets/yakul.gif" alt="">
   <footer>
     <p>Miyazaki is the best.</p>
   </footer>
