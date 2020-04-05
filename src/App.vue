@@ -7,7 +7,7 @@
   <p>List of Ghibli Characters: <characters-list :characters="characters" /></p>
 
   <p>Favorited Ghibli Characters: <favorite-character-list /></p>
-  <film-detail />
+  <film-detail :films="films" />
   <character-detail />
 </div>
   
@@ -51,6 +51,16 @@ export default {
     .then(characters=> this.characters = characters)
     .catch(error=> console.log(error))
 
+    eventBus.$on('add-personal-score', ({ personalFilmScore, title })=>{
+      this.films = this.films.reduce((films, film) => {
+          const newFilm = { ...film }
+          if (film.title === title) {
+              newFilm.personalScore = personalFilmScore
+          }
+          films.push(newFilm)
+          return films
+      }, [])
+    })
   }
 
 }

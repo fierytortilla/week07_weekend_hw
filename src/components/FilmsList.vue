@@ -20,8 +20,8 @@ export default {
     },
     props: ["films"],
     methods:{
-    handleClick(){
-        eventBus.$emit('film-selected', this.selectedFilm)
+        handleClick(){
+            eventBus.$emit('film-selected', this.selectedFilm)
         }
     }
 

@@ -6,11 +6,11 @@
     <p><span>Release Date: </span>{{film.release_date}}</p>
     <p>Director: {{film.director}}</p>
     <p>Rotten Tomatoes Critical Score: {{film.rt_score}}%</p>
-    <!-- <form v-on:submit.prevent="savePersonalFilmScore">
-        <input type="number" placeholder= "Input your personal score" v-model="personalFilmScore.personalScore">
+    <form v-on:submit.prevent="savePersonalFilmScore">
+        <input type="number" placeholder= "Input your personal score" v-model="personalFilmScore">
         <input type="submit" value="Save New Score" />
-    </form> -->
-     <!-- <span v-if="personalFilmScore!=null"><p>Your own personal score: {{personalFilmScore.personalScore}}%</p></span> -->
+    </form>
+     <!-- <span v-if="personalFilmScore!=null"><p>Your own personal score: {{personalFilmScore}}%</p></span> -->
     <p>Description: {{film.description}}</p>
 </div>
 </template>
@@ -23,12 +23,10 @@ export default {
     data(){
         return {
             film: null,
-            personalFilmScore: {
-                film: null,
-                personalScore: null
-            }
+            personalFilmScore: null
         }
     },
+    props: ["films"],
     mounted(){
         eventBus.$on('film-selected', (film)=>{this.film= film})
     },
@@ -40,10 +38,7 @@ export default {
             eventBus.$emit('film-unfavorited', this.film)
         },
         savePersonalFilmScore(){
-            this.personalFilmScore.film= this.film
-            this.personalFilmScore.personalScore= this.personalScore
-            eventBus.$emit('add-personal-score', this.personalFilmScore)
-            this.personalFilmScore.film= null
+            eventBus.$emit('add-personal-score', { personalFilmScore: this.personalFilmScore, title: this.film.title })
             this.personalFilmScore= null
         }
 
