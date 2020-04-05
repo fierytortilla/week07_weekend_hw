@@ -10,7 +10,7 @@
         <input type="number" placeholder= "Input your personal score" v-model="personalFilmScore">
         <input type="submit" value="Save New Score" />
     </form>
-     <!-- <span v-if="personalFilmScore!=null"><p>Your own personal score: {{personalFilmScore}}%</p></span> -->
+     <span v-if="film.personalScore!=null"><p>Your own personal score: {{film.personalScore}}%</p></span>
     <p>Description: {{film.description}}</p>
 </div>
 </template>

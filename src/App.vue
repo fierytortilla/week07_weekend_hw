@@ -1,14 +1,25 @@
 <template>
-<div>
-  <h1>Ghibli Otaku Fandom Extravaganza</h1>
-  <p>List of Ghibli Movies: <films-list :films="films"/></p>
-  <p>Favorited Ghibli Movies: <favorite-films-list /></p>
+<div id='app'>
+  <header>
+    <h1>Ghibli Otaku Fandom Extravaganza</h1>
+  </header>
+  <div id="container">
+    <div id= "ghibli-movies">
+    <p>List of Ghibli Movies: <films-list :films="films"/></p>
+    <p>Favorited Ghibli Movies: <favorite-films-list /></p>
+  </div>
 
-  <p>List of Ghibli Characters: <characters-list :characters="characters" /></p>
-
-  <p>Favorited Ghibli Characters: <favorite-character-list /></p>
-  <film-detail :films="films" />
+  <div id="ghibli-characters">
+    <p>List of Ghibli Characters: <characters-list :characters="characters" /></p>
+    <p>Favorited Ghibli Characters: <favorite-character-list /></p>
+  </div>
+  <film-detail /> 
+<div class="vl"></div> 
   <character-detail />
+  </div>
+  <footer>
+    <p>Miyazaki is the best.</p>
+  </footer>
 </div>
   
 </template>
@@ -66,13 +77,34 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   header{
+    font-family: "Comic Sans MS";
+    text-align: center;
     background-color: deeppink;
+    color: yellow;
   }
 
-  body {
-    background-color: deepskyblue
+  .container {
+    display: grid;
+    grid-template-columns: repeat(10, 100px);
+    grid-template-rows: repeat(10, 100px);
+    max-width: 100%;
+    text-align: center;
+  }
+
+  #ghibli-movies {
+    /* display: flex;
+    justify-content: flex-start;
+    align-items: flex-start; */
+    grid-area: 4 / 4 / span 7 / span 8;
+  }
+
+  #ghibli-characters {
+    /* display: flex;
+    justify-content: flex-start;
+    align-items: flex-start; */
+    grid-area: 4 / 40 / span 7 / span 8;
   }
 
   footer {
